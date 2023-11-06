@@ -12,24 +12,26 @@ export default function MovieDetails() {
     const [loading, setLoading] = useState(true);
     const { movieId } = useParams();
     
-    useEffect(() => { 
-         if (!movieId) {
+    useEffect(() => {
+        if (!movieId) {
             return;
         };
 
         getMovieDetails(endPoint, movieId)
-         .then(data => {
+            .then(data => {
                 setMovie(data);
-         })
-        .catch(getErrore)
-        .finally(() => setLoading(false));
-    },[movieId])
+            })
+            .catch(getErrore)
+            .finally(() => setLoading(false));
+    }, [movieId]);
 
     return (
         <>
             <h2>Movie Details:</h2>
             {loading && <Loader></Loader>}
-            <img src={`http://image.tmdb.org/t/p/w154${movie.poster_path}`}/>
+            <img src={`http://image.tmdb.org/t/p/w154${movie.poster_path}`}
+                alt={movie.title} width="154" height="231" />
+            <h3>{movie.title}</h3>
         </>
        
     )

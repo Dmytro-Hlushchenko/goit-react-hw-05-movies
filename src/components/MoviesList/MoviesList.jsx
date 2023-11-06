@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 
 export default function MoviesList({ films }) {
-    console.log(films)
   return(
     <ul>
           {
