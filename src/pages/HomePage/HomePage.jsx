@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { getMovies, getErrore } from "API";
 import MoviesList from "components/MoviesList";
+import Loader from 'components/Loader';
 
 const endPoint = "/trending/movie/day";
 
 const HomePage = () => {      
     
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [films, setFilms] = useState([]);
     
     useEffect(() => {
@@ -25,7 +26,7 @@ const HomePage = () => {
         
         <div>
             <h2>Trending Films</h2>
-              {loading && "Loading....."}
+              {loading && <Loader></Loader>}
             <MoviesList
                 films={films}
             >

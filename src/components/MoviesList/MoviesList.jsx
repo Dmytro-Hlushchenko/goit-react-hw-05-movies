@@ -8,7 +8,8 @@ export default function MoviesList({ films }) {
           {
               films.map(({id, title}) => (
             <li key={id}>
-                    <Link to={`/movies/${id}`}>{title}
+                    <Link to={`/movies/${id}`}>
+                          {title}
                     </Link> 
             </li>))
         }
