@@ -4,6 +4,7 @@ import { Link } from "./App.styled";
 import HomePage from "../pages/HomePage";
 import MoviesPage from "pages/MoviesPage/MoviesPage";
 import MovieDetails from "pages/MovieDetailsPage/MovieDetailsPage"
+import Cast from "./Cast";
 
 export const App = () => {
   
@@ -20,7 +21,7 @@ export const App = () => {
         <Route path="/" element={<HomePage>Home</HomePage>}></Route>
         <Route path="/movies" element={<MoviesPage>Movies</MoviesPage>}></Route>
         <Route path="/movies/:movieId" element={<MovieDetails>MovieDetails</MovieDetails>}></Route>
-        <Route path="/movies/:movieId/cast" element={<div>Casts</div>}></Route>
+        <Route path="/movies/:movieId/cast" element={<Cast>Casts</Cast>}></Route>
         <Route path="/movies/:movieId/reviews" element={<div>Reviews</div>}></Route>
       </Routes>
     </div>

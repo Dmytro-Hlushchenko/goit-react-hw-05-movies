@@ -3,8 +3,6 @@ import { getMovies, getErrore } from "API";
 import MoviesList from "components/MoviesList";
 import Loader from 'components/Loader';
 
-const endPoint = "/trending/movie/day";
-
 const HomePage = () => {      
     
     const [loading, setLoading] = useState(true);
@@ -14,7 +12,7 @@ const HomePage = () => {
         if (films.length > 0) {
             return
         }
-        getMovies(endPoint)
+        getMovies()
             .then(data => {
                 setFilms(data.results);
             })
