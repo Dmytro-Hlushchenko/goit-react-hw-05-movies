@@ -1,6 +1,6 @@
 import { getMovieDetails, getErrore } from "API";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from 'components/Loader';
 
 
@@ -25,13 +25,43 @@ export default function MovieDetails() {
             .finally(() => setLoading(false));
     }, [movieId]);
 
+     if (!movie) {
+        return;
+    };
+
+    // const genres = function movieGenres() {
+    //     movie.genres.map(({ name }) => `${name}, `)
+    //     movieGenres();
+    // };
+
     return (
-        <>
-            <h2>Movie Details:</h2>
+        <>  
+            <Link>Back</Link>
+            <h2>{movie.title}</h2>
             {loading && <Loader></Loader>}
-            <img src={`http://image.tmdb.org/t/p/w154${movie.poster_path}`}
-                alt={movie.title} width="154" height="231" />
-            <h3>{movie.title}</h3>
+            {movie &&
+                <div>
+                    <img src={`http://image.tmdb.org/t/p/w154${movie.poster_path}`}
+                        alt={movie.title} width="154" height="231" />
+                    <h3>{movie.original_title}</h3>
+                    <p><b>Release date:</b> {movie.release_date}</p>
+                    <p><b>Ranking:</b> {movie.vote_average}</p>
+                    {/* <p><b>Genres:</b>{genres}</p> */}
+                    <p><b>Overview: </b>{movie.overview}</p>
+                </div>
+            }
+            <div>
+                <h3>Additional information:</h3>
+                <ul>
+                    <li>
+                        <Link>Cast</Link>
+                    </li>
+                    <li>
+                        <Link>Reviews</Link>
+                    </li>
+                </ul>
+            </div>
+            
         </>
        
     )
