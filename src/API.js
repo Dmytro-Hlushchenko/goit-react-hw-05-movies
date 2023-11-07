@@ -17,6 +17,12 @@ export async function getMovieDetails(endPoint, movieId) {
     return response.data;
 };
 
+export async function getCredits(endPoint, movieId) { 
+    const url = `${URL}${endPoint}/${movieId}/credits?api_key=${KEY}`
+    const response = await axios.get(url);
+    return response.data;
+};
+
 export function getErrore() {
     console.log('Щось пішло не так! Перезавантажте сторінку');
 };

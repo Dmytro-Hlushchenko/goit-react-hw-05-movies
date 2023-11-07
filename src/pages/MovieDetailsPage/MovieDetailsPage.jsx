@@ -56,9 +56,6 @@ export default function MovieDetails() {
                     <li>
                         <Link>Cast</Link>
                     </li>
-                    <li>
-                        <Link>Reviews</Link>
-                    </li>
                 </ul>
             </div>
             
