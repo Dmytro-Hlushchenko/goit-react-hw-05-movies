@@ -42,7 +42,7 @@ export default function MovieDetails() {
                     <p><b>Ranking:</b> {vote_average}</p>
                     <p><b>Genres: </b> {genres && genres.map(({name}) => `${name}; `)}</p>
                     <p><b>Overview: </b>{overview}</p>
-                </div>
+                </div>  
             }
             <div>
                 <h3>Additional information:</h3>
