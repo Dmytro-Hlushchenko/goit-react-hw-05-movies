@@ -51,7 +51,7 @@ export default function MovieDetails() {
                         <Link to={`/movies/${id}/cast`}>Cast</Link>
                     </li>
                      <li>
-                        <Link>Reviews</Link>
+                        <Link to={`/movies/${id}/reviews`}>Reviews</Link>
                     </li>
                 </ul>
                 <Outlet></Outlet>

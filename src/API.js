@@ -23,6 +23,11 @@ export async function getCredits(movieId) {
     return response.data;
 };
 
+export async function getReviews(movieId) { 
+    const url = `${URL}/movie/${movieId}/reviews?api_key=${KEY}`
+    const response = await axios.get(url);
+    return response.data;
+};
 export function getErrore() {
     console.log('Щось пішло не так! Перезавантажте сторінку');
 };
