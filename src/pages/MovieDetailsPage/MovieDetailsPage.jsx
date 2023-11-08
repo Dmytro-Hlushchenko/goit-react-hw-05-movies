@@ -1,6 +1,6 @@
 import { getMovieDetails, getErrore } from "API";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, NavLink, Outlet, useParams } from "react-router-dom";
 import Loader from 'components/Loader';
 
 export default function MovieDetails() {
@@ -26,7 +26,7 @@ export default function MovieDetails() {
         return;
     };
 
-    const { id, title, poster_path, original_title, release_date, vote_average, overview } = movie;
+    const { id, title, poster_path, original_title, release_date, vote_average, overview, genres } = movie;
 
     return (
         <>  
@@ -35,12 +35,12 @@ export default function MovieDetails() {
             {loading && <Loader></Loader>}
             {movie &&
                 <div>
-                    <img src={`http://image.tmdb.org/t/p/w154${poster_path}`}
+                    <img src={poster_path && `http://image.tmdb.org/t/p/w154${poster_path}`}
                         alt={title} width="154" height="231" />
                     <h3>{original_title}</h3>
                     <p><b>Release date:</b> {release_date}</p>
                     <p><b>Ranking:</b> {vote_average}</p>
-                    {/* <p><b>Genres:</b>{genres}</p> */}
+                    <p><b>Genres: </b> {genres && genres.map(({name}) => `${name}; `)}</p>
                     <p><b>Overview: </b>{overview}</p>
                 </div>
             }
@@ -48,10 +48,10 @@ export default function MovieDetails() {
                 <h3>Additional information:</h3>
                 <ul>
                     <li>
-                        <Link to={`/movies/${id}/cast`}>Cast</Link>
+                        <NavLink to={`/movies/${id}/cast`}>Cast</NavLink>
                     </li>
                      <li>
-                        <Link to={`/movies/${id}/reviews`}>Reviews</Link>
+                        <NavLink to={`/movies/${id}/reviews`}>Reviews</NavLink>
                     </li>
                 </ul>
                 <Outlet></Outlet>

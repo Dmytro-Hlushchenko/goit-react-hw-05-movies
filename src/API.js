@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { Notify } from "notiflix";
 
 const KEY = "a0d3d78947a19dedcb27f194d7d7e916";
 const URL = "https://api.themoviedb.org/3";
@@ -25,6 +24,12 @@ export async function getCredits(movieId) {
 
 export async function getReviews(movieId) { 
     const url = `${URL}/movie/${movieId}/reviews?api_key=${KEY}`
+    const response = await axios.get(url);
+    return response.data;
+};
+
+export async function getSearchMovies(query) { 
+    const url = `${URL}/search/movie?api_key=${KEY}&query=${query}`
     const response = await axios.get(url);
     return response.data;
 };
