@@ -1,6 +1,6 @@
 import { getMovieDetails, getErrore } from "API";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import Loader from 'components/Loader';
 
 export default function MovieDetails() {
@@ -50,7 +50,11 @@ export default function MovieDetails() {
                     <li>
                         <Link to={`/movies/${id}/cast`}>Cast</Link>
                     </li>
+                     <li>
+                        <Link>Reviews</Link>
+                    </li>
                 </ul>
+                <Outlet></Outlet>
             </div>
             
         </>
