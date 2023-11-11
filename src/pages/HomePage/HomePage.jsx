@@ -3,7 +3,7 @@ import { getMovies, getErrore } from "API";
 import MoviesList from "components/MoviesList";
 import Loader from 'components/Loader';
 
-const HomePage = () => {      
+export default function HomePage () {      
     
     const [loading, setLoading] = useState(true);
     const [films, setFilms] = useState([]);
@@ -34,4 +34,3 @@ const HomePage = () => {
         )
 };
 
-export default HomePage;

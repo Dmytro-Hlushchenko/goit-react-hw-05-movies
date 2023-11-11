@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 export default function MoviesList({ films }) {
-  return(
+  
+  return (
     <ul>
           {
              films.map(({id, title}) => (

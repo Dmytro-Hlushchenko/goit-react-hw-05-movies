@@ -1,19 +1,19 @@
-import SearchBar from "../../components/SearchBar/SearchBar";
 import { getSearchMovies, getErrore } from "../../API";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import Loader from 'components/Loader';
 import MoviesList from '../../components/MoviesList/MoviesList';
 
-export default function MoviesPage() {
+export default function MoviesPage () {
 
   const [loading, setLoading] = useState(false);
   const [films, setMovies] = useState([]);
-  const [search, setSearch] = useState('');
+    
+  const [params, setSearchParams] = useSearchParams();
+  const search = params.get('query') ?? '';
+  // const searchQuery = params.get('query') ?? "";
 
-  const onSearchBtn = (search) => {
-    setSearch(search);
-  }
-  
   useEffect(() => {
     if (search === '') {
       return;
@@ -32,12 +32,34 @@ export default function MoviesPage() {
       .finally(() => setLoading(false));
 
   }, [films, search]);
+
+  const onSubmitSearchBar = (evt) => {
+    evt.preventDefault();
+    const form = evt.currentTarget;
+    const searchValue = form.search.value
+      .trim()
+      .toLowerCase();
+    
+    if (searchValue === '') {
+      setSearchParams({});
+      setMovies([]);
+      return;
+    };
+
+    if (searchValue === search) {
+      return;
+    };
+
+    setSearchParams({ query: searchValue });
+    setMovies([]);
+  };
+
   
-   return (
-        <>
-          <SearchBar onSearchBtn={onSearchBtn}></SearchBar>
-          {loading && <Loader />}
-          <MoviesList films={films} ></MoviesList>
-        </>
-      )
+    return (
+      <>
+        <SearchBar onSubmitSearchBar={onSubmitSearchBar} value={search}></SearchBar>
+        {loading && <Loader />}
+        <MoviesList films={films} ></MoviesList>
+      </>
+    )
 };

@@ -1,7 +1,10 @@
 import { getMovieDetails, getErrore } from "API";
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import Loader from 'components/Loader';
+import { AddLink } from './MovieDetailsPage.styled';
+import { IoArrowBack } from 'react-icons/io5'
+
 
 export default function MovieDetails() {
      
@@ -30,12 +33,12 @@ export default function MovieDetails() {
 
     return (
         <>  
-            <Link>Back</Link>
+            <Link  to= "/"><IoArrowBack></IoArrowBack>Go back</Link>
             <h2>{title}</h2>
             {loading && <Loader></Loader>}
             {movie &&
                 <div>
-                    <img src={poster_path && `http://image.tmdb.org/t/p/w154${poster_path}`}
+                    <img src={`http://image.tmdb.org/t/p/w154${poster_path}`}
                         alt={title} width="154" height="231" />
                     <h3>{original_title}</h3>
                     <p><b>Release date:</b> {release_date}</p>
@@ -48,16 +51,14 @@ export default function MovieDetails() {
                 <h3>Additional information:</h3>
                 <ul>
                     <li>
-                        <NavLink to={`/movies/${id}/cast`}>Cast</NavLink>
+                        <AddLink to={`/movies/${id}/cast`}>Cast</AddLink>
                     </li>
                      <li>
-                        <NavLink to={`/movies/${id}/reviews`}>Reviews</NavLink>
+                        <AddLink to={`/movies/${id}/reviews`}>Reviews</AddLink>
                     </li>
                 </ul>
                 <Outlet></Outlet>
             </div>
-            
         </>
-       
     )
 };

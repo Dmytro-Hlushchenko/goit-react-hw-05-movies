@@ -25,7 +25,6 @@ export const App = () => {
           <Route path="cast" element={<Cast>Casts</Cast>}></Route>
           <Route path="reviews" element={<Reviews>Reviews</Reviews>}></Route>
         </Route>
-        
       </Routes>
     </div>
   );

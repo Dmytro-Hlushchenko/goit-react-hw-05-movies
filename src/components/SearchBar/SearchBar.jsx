@@ -1,28 +1,20 @@
-import { Formik, Field, Form } from 'formik';
-
-export default function SearchBar ({onSearchBtn}) {
-      return (
-        <Formik
-          initialValues={{
-            search:'',
-          }}
-
-            onSubmit={(values, action) => {  
-                onSearchBtn(values.search)}}>
-                <Form>
-                    <header>
-                        <button type="submit">
+export default function SearchBar ({ onSubmitSearchBar, value }) {
+  
+ return (
+        <div>
+                <form onSubmit={onSubmitSearchBar}>
+                    <button type="submit">
                         <span>Search</span>
-                        </button>
-                            <Field
-                            name="search"
-                                type="text"
-                                autoComplete="off"
-                                autoFocus
-                                placeholder=""
-                            />
-                    </header>
-                </Form>
-        </Formik>
-      )
+                    </button>
+                    <input
+                      name="search" 
+                      type="text"
+                      autoComplete="off"
+                      autoFocus
+                      defaultValue={value}
+                      placeholder="Enter your request!"
+                    />
+                </form>
+        </div>
+  )
 };
