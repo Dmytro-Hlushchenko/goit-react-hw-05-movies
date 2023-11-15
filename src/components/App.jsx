@@ -1,16 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import { React} from "react";
+import { React, lazy, Suspense } from "react";
 import { Link } from "./App.styled";
-import HomePage from "../pages/HomePage/HomePage";
-import MoviesPage from "pages/MoviesPage/MoviesPage";
-import MovieDetails from "pages/MovieDetailsPage/MovieDetailsPage"
-import Cast from "./Cast";
-import Reviews from "./Reviews";
+
+const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("pages/MoviesPage/MoviesPage"));
+const MovieDetails = lazy(() => import("pages/MovieDetailsPage/MovieDetailsPage"));
+const Cast = lazy(() => import("./Cast"));
+const Reviews = lazy(() => import("./Reviews"))
 
 export const App = () => {
   
   return (
-    <div>
+    <Suspense>
       <header>
         <nav>
           <Link to="/">Home</Link>
@@ -26,6 +27,6 @@ export const App = () => {
           <Route path="reviews" element={<Reviews>Reviews</Reviews>}></Route>
         </Route>
       </Routes>
-    </div>
+    </Suspense>
   );
 };

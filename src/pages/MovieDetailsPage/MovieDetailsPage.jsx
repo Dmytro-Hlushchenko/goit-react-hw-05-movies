@@ -12,7 +12,7 @@ export default function MovieDetails() {
     const [loading, setLoading] = useState(true);
     const { movieId } = useParams();
     const location = useLocation();
-    const backLinkRef = (location.state?.from ?? '/');
+    const backLink = (location.state?.from ?? '/');
    
     
     useEffect(() => {
@@ -33,10 +33,10 @@ export default function MovieDetails() {
     };
 
     const { id, title, poster_path, original_title, release_date, vote_average, overview, genres } = movie;
-    console.log(location.state)
+
     return (
         <>  
-            <BackLink to={backLinkRef}><IoArrowBack></IoArrowBack>Go back</BackLink>
+            <BackLink to={backLink}><IoArrowBack></IoArrowBack>Go back</BackLink>
             <h2>{title}</h2>
             {loading && <Loader></Loader>}
             {movie &&
