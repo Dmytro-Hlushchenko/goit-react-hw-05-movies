@@ -32,7 +32,8 @@ export default function Cast() {
                     <li key={id}>
                         <b>{name}</b>
                         <p>Character: {character}</p>
-                        <img src={`http://image.tmdb.org/t/p/w185${profile_path}`}
+                        <img src={profile_path ? `http://image.tmdb.org/t/p/w185${profile_path}` :
+                            'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'}
                         alt={name} width="100" height="150" />
                     </li>)}
             </ul> :

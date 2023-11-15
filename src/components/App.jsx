@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { React} from "react";
 import { Link } from "./App.styled";
-import HomePage from "../pages/HomePage";
+import HomePage from "../pages/HomePage/HomePage";
 import MoviesPage from "pages/MoviesPage/MoviesPage";
 import MovieDetails from "pages/MovieDetailsPage/MovieDetailsPage"
 import Cast from "./Cast";

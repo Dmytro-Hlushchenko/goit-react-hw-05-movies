@@ -5,14 +5,15 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import Loader from 'components/Loader';
 import MoviesList from '../../components/MoviesList/MoviesList';
 
+
 export default function MoviesPage () {
 
   const [loading, setLoading] = useState(false);
-  const [films, setMovies] = useState([]);
+  const [films, setFilms] = useState([]);
+  
     
   const [params, setSearchParams] = useSearchParams();
-  const search = params.get('query') ?? '';
-  // const searchQuery = params.get('query') ?? "";
+  const search = params.get('query') ?? ''; 
 
   useEffect(() => {
     if (search === '') {
@@ -21,12 +22,12 @@ export default function MoviesPage () {
     
     if (films.length > 0) {
       return;
-    };
+    }; 
 
     setLoading(true);
     getSearchMovies(search)
       .then(data => {
-        setMovies(data.results);
+        setFilms(data.results);
       })
       .catch(getErrore)
       .finally(() => setLoading(false));
@@ -36,13 +37,13 @@ export default function MoviesPage () {
   const onSubmitSearchBar = (evt) => {
     evt.preventDefault();
     const form = evt.currentTarget;
-    const searchValue = form.search.value
+    const searchValue = form.search.value 
       .trim()
       .toLowerCase();
     
     if (searchValue === '') {
       setSearchParams({});
-      setMovies([]);
+      setFilms([]);
       return;
     };
 
@@ -51,7 +52,7 @@ export default function MoviesPage () {
     };
 
     setSearchParams({ query: searchValue });
-    setMovies([]);
+    setFilms([]);
   };
 
   

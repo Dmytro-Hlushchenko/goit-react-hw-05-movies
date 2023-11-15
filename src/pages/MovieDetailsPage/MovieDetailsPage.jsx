@@ -1,8 +1,8 @@
 import { getMovieDetails, getErrore } from "API";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useLocation } from "react-router-dom";
 import Loader from 'components/Loader';
-import { AddLink } from './MovieDetailsPage.styled';
+import { AddLink, BackLink } from './MovieDetailsPage.styled';
 import { IoArrowBack } from 'react-icons/io5'
 
 
@@ -11,6 +11,9 @@ export default function MovieDetails() {
     const [movie, setMovie] = useState({});
     const [loading, setLoading] = useState(true);
     const { movieId } = useParams();
+    const location = useLocation();
+    const backLinkRef = (location.state?.from ?? '/');
+   
     
     useEffect(() => {
         if (!movieId) {
@@ -30,20 +33,21 @@ export default function MovieDetails() {
     };
 
     const { id, title, poster_path, original_title, release_date, vote_average, overview, genres } = movie;
-
+    console.log(location.state)
     return (
         <>  
-            <Link  to= "/"><IoArrowBack></IoArrowBack>Go back</Link>
+            <BackLink to={backLinkRef}><IoArrowBack></IoArrowBack>Go back</BackLink>
             <h2>{title}</h2>
             {loading && <Loader></Loader>}
             {movie &&
                 <div>
-                    <img src={`http://image.tmdb.org/t/p/w154${poster_path}`}
+                    <img src={poster_path ? `http://image.tmdb.org/t/p/w154${poster_path}` :
+                        'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'}
                         alt={title} width="154" height="231" />
                     <h3>{original_title}</h3>
                     <p><b>Release date:</b> {release_date}</p>
                     <p><b>Ranking:</b> {vote_average}</p>
-                    <p><b>Genres: </b> {genres && genres.map(({name}) => `${name}; `)}</p>
+                    <p><b>Genres: </b> {genres && genres.map(({name}) => `${name} | `)}</p>
                     <p><b>Overview: </b>{overview}</p>
                 </div>  
             }
@@ -62,3 +66,5 @@ export default function MovieDetails() {
         </>
     )
 };
+
+

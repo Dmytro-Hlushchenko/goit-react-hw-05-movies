@@ -4,8 +4,8 @@ export default function Loader () {
     return(
         <MagnifyingGlass
             visible={true}
-            height="80"
-            width="80"
+            height="120"
+            width="120"
             ariaLabel="MagnifyingGlass-loading"
             wrapperStyle={{}}
             wrapperClass="MagnifyingGlass-wrapper"
