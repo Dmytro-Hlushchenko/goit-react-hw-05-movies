@@ -7,7 +7,6 @@ export const AddLink = styled(NavLink)`
 `
 export const BackLink = styled(Link)`
   color: black;
-  background-color: grey;
   font-weight: 700;
   border-radius: 10%;
    border: 1px solid black;

@@ -8,7 +8,7 @@ import { IoArrowBack } from 'react-icons/io5'
 
 export default function MovieDetails() {
      
-    const [movie, setMovie] = useState({});
+    const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const { movieId } = useParams();
     const location = useLocation();

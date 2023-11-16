@@ -1,1 +1,1 @@
-export {default} from "/components/SearchBar/SearchBar.jsx"
+export { default } from "./SearchBar";
