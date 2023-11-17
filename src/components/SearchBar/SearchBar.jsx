@@ -1,5 +1,32 @@
-export default function SearchBar ({ onSubmitSearchBar, value }) {
+import { useSearchParams } from "react-router-dom";
+import { Notify } from "notiflix";
+
+export default function SearchBar () {
   
+  const [params, setSearchParams] = useSearchParams();
+  const search = params.get('query') ?? '';
+
+  const onSubmitSearchBar = (query) => {
+    query.preventDefault();
+    const form = query.currentTarget;
+    const searchValue = form.search.value 
+      .trim()
+      .toLowerCase();
+    
+    if (searchValue === '') {
+      setSearchParams({});
+      return;
+    };
+
+    if (searchValue === search) {
+      Notify.info('Enter new request, please!');
+      return;
+    };
+
+    setSearchParams({ query: searchValue });
+  };
+
+
  return (
         <div>
                 <form onSubmit={onSubmitSearchBar}>
@@ -11,7 +38,6 @@ export default function SearchBar ({ onSubmitSearchBar, value }) {
                       type="text"
                       autoComplete="off"
                       autoFocus
-                      defaultValue={value}
                       placeholder="Enter your request!"
                     />
                 </form>

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
 import Loader from 'components/Loader';
 import { AddLink, BackLink } from './MovieDetailsPage.styled';
-import { IoArrowBack } from 'react-icons/io5'
+import { IoArrowBack } from 'react-icons/io5';
+import { Section } from "./MovieDetailsPage.styled";
 
 
 export default function MovieDetails() {
@@ -35,7 +36,7 @@ export default function MovieDetails() {
     const { id, title, poster_path, original_title, release_date, vote_average, overview, genres } = movie;
 
     return (
-        <>  
+        <Section>  
             <BackLink to={backLink}><IoArrowBack></IoArrowBack>Go back</BackLink>
             <h2>{title}</h2>
             {loading && <Loader></Loader>}
@@ -63,7 +64,7 @@ export default function MovieDetails() {
                 </ul>
                 <Outlet></Outlet>
             </div>
-        </>
+        </Section>
     )
 };
 

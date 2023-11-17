@@ -12,7 +12,7 @@ export default function MoviesPage () {
   const [films, setFilms] = useState([]);
   
     
-  const [params, setSearchParams] = useSearchParams();
+  const [params] = useSearchParams();
   const search = params.get('query') ?? ''; 
 
   useEffect(() => {
@@ -34,33 +34,11 @@ export default function MoviesPage () {
 
   }, [films, search]);
 
-  const onSubmitSearchBar = (evt) => {
-    evt.preventDefault();
-    const form = evt.currentTarget;
-    const searchValue = form.search.value 
-      .trim()
-      .toLowerCase();
-    
-    if (searchValue === '') {
-      setSearchParams({});
-      setFilms([]);
-      return;
-    };
-
-    if (searchValue === search) {
-      return;
-    };
-
-    setSearchParams({ query: searchValue });
-    setFilms([]);
-  };
-
-  
-    return (
+  return (
       <>
-        <SearchBar onSubmitSearchBar={onSubmitSearchBar} value={search}></SearchBar>
+        <SearchBar />
         {loading && <Loader />}
-        <MoviesList films={films} ></MoviesList>
+        <MoviesList films={films} />
       </>
     )
 };

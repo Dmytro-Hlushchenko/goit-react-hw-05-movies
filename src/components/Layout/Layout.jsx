@@ -10,7 +10,6 @@ export default function Layout() {
             <Suspense fallback={<div>Loading...</div>} >
                 <Outlet />
             </Suspense>
-            
         </header>
         
     )
